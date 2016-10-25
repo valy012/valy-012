@@ -1,1 +1,0 @@
-# permag-full

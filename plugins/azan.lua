@@ -1,8 +1,8 @@
 --[[
 
 #
-#     @antispamandhack
-#   @mrr619bot
+#  
+#   @permagChannel
 #      
 
 ]]

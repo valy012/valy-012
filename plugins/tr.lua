@@ -69,4 +69,4 @@ return {
 }
 
 end
---@antispamandhack
+--@permagChannel

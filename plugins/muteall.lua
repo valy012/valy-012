@@ -1,6 +1,4 @@
--- by @Blackwolf_admin 
---edit by @Mrr619
--- channel : @antispamandhack
+-- channel : @permagChannel
 do
 local function pre_process(msg)
  local hash = 'muteall:'..msg.to.id
@@ -48,6 +46,4 @@ run = run,
   pre_process = pre_process
 }
 end
--- by @Blackwolf_admin 
--- edit by @Mrr619
--- our channel : @antispamandhack 
+-- our channel : @permagChannel

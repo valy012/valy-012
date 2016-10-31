@@ -1,5 +1,5 @@
 local function run(msg, matches)
-local telediamond = [[
+local permagbot = [[
 ➖➖➖➖➖➖➖
 ✔️لیست دستورات مدیریتی
 ➖➖➖➖➖➖➖ 
@@ -126,7 +126,7 @@ local telediamond = [[
 ➰شما میتوانید از '/' یا '!' یا '#' برای اجرای دستورات استفاده کنید.
 
 ]]
-local telediamond2 = [[
+local permagbot2 = [[
 ➖➖➖➖➖➖➖
 ✔️لیست دستورات قفلی:
 ➖➖➖➖➖➖➖
@@ -227,7 +227,7 @@ local telediamond2 = [[
 ✔️》بازکردن آهنگ
 
 ]]
-local telediamond3 = [[
+local permagbot3 = [[
 ➖➖➖➖➖➖➖
 ✔️لیست دستورات فان:
 ➖➖➖➖➖➖➖
@@ -309,7 +309,7 @@ local telediamond3 = [[
 ➰بجای کلمه یا متن موارد دلخواه خود را بنویسید.
 
 ]]
-local telediamond4 = [[
+local permagbot4 = [[
 ✔️لیست دستورات مدیریتی سوپر گروه:
 🔱#info
 〽️نمایش اطلاعات کلی در مورد سوپر گروه
@@ -394,7 +394,7 @@ local telediamond4 = [[
 
 ➰در صامت کردن زمان دار بجای X ساعت بجای Y دقیقه و بجای Z ثانیه را قرار بدید.
 ]]
-local telediamond5 = [[
+local permagbot5 = [[
 ✔️لیست دستورات فان سوپر گروه:
 
 🔱#stickerpro text
@@ -450,7 +450,7 @@ local telediamond5 = [[
 
 ✨بجای text کلمه مورد نظر خود را بنویسید.
 ]]
-local telediamond6 = [[
+local permagbot6 = [[
 ✔️لیست دستورات قفلی سوپر گروه:
 🔱#lock text 
 🔱#unlock text
@@ -517,7 +517,7 @@ local telediamond6 = [[
 ➰قفل سخت گیری:در صورتی که یکی از گزینه های بالا قفل باشد کاربر با انجام آن خودکار حذف میشود.
 مثلا وقتی لینک قفل باشد درصورتی که کاربر لینک ارسال کند هم لینک و هم کاربر در صورت قفل بودن سخت گیری حذف خواهند شد.
 ]]
-local telediamond7 = [[
+local permagbot7 = [[
 
 
 🎗شما میتوانید با این دستورات ربات را در گروه خود روشن و خاموش کنید.
@@ -545,19 +545,19 @@ local telediamond7 = [[
 
 ]]
     if matches[1] == 'راهنمای مدیریتی' and is_momod(msg) then
-        return telediamond  
+        return permagbot  
   elseif matches[1] == 'راهنمای قفلی' and is_momod(msg) then
-    return telediamond2
+    return permagbot2
   elseif matches[1] == 'راهنمای فان' and is_momod(msg) then
-    return telediamond3
+    return permagbot3
   elseif matches[1] == 'modhelp' and is_momod(msg) then
-    return telediamond4
+    return permagbot4
   elseif matches[1] == 'funhelp' and is_momod(msg) then
-    return telediamond5
+    return permagbot5
   elseif matches[1] == 'lockhelp' and is_momod(msg) then
-    return telediamond6
+    return permagbot6
   elseif matches[1] == 'help' and is_momod(msg) or matches[1] == 'راهنما' and is_momod(msg) then
-    return telediamond7
+    return permagbot7
   end
 end
 

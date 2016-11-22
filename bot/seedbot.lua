@@ -251,7 +251,8 @@ function create_config( )
 	"weather",
 	"write1",
 	"whitelist",
-	"fal"
+	"fal",
+	"muteall"
     },
     sudo_users = {299453239,182255045,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},

@@ -119,10 +119,10 @@ local permagbot2 = [[
 🔒#lock fwd
 🔒#unlock fwd
 〰〰〰〰〰
-💬 قفل تگ
-تگ همان یوزر کانالها میباشد - پیشنهاد میشود غیرفعال باشد
-🔒#lock tag
-🔒#unlock tag
+💬 قفل کردن یوزر نیم
+اگر در گروه کسی یوزر نیم ارسال کند پاک خواهد شد .
+🔒#lock username
+🔒#unlock username
 〰〰〰〰〰
 💬 قفل موزیک
 🔒#mute audio

@@ -189,6 +189,37 @@ local function callback_kicked(cb_extra, success, result)
 end
 
 --Begin supergroup locks
+
+
+
+local function lock_group_username(msg, data, target)
+  if not is_momod(msg) then
+    return reply_msg(msg.id,"\n<b>شما مدیر نیستید! </b>", ok_cb, false)
+  end
+  local group_username_lock = data[tostring(target)]['settings']['username']
+  if group_tag_lock == 'yes' then
+    return '🔹یوزر نیم قفل است'
+  else
+    data[tostring(target)]['settings']['username'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return '🔹یوزر نیم قفل شد'
+  end
+end
+
+local function unlock_group_username(msg, data, target)
+  if not is_momod(msg) then
+    return reply_msg(msg.id,"\n<b>شما مدیر نیستید! </b>", ok_cb, false)
+  end
+  local group_username_lock = data[tostring(target)]['settings']['username']
+  if group_username_lock == 'no' then
+    return '🔹قفل یوزر نیم غیرفعال شد'
+  else
+    data[tostring(target)]['settings']['username'] = 'no'
+    save_data(_config.moderation.data, data)
+    return '🔹قفل یوزر نیم غیرفعال شد'
+  end
+end
+
 local function lock_group_links(msg, data, target)
   if not is_momod(msg) then
     return
@@ -276,55 +307,7 @@ local function unlock_group_flood(msg, data, target)
   end
 end
 
-local function lock_group_tag(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_tag_lock = data[tostring(target)]['settings']['tag']
-  if group_tag_lock == 'yes' then
-  local hash = 'group:'..msg.to.id
-  local group_lang = redis:hget(hash,'lang')
-  if group_lang then
-  return '🔐قُفل هشتگ(#) دږ سوپږگږوه فعال بود🔒'
-  else
-    return '🔐قُفل هشتگ(#) دږ سوپږگږوه فعال بود🔒'
-  end
-  end
-    data[tostring(target)]['settings']['tag'] = 'yes'
-    save_data(_config.moderation.data, data)
-    local hash = 'group:'..msg.to.id
-  local group_lang = redis:hget(hash,'lang')
-  if group_lang then
-  return 'اگر متنی دارای یوزر کانال باشد مثلا @permag_bots آن مطلب حذف خواهد شد . از انجایی که امروزه تمامی مطالب فورواردی دارای یوزر میباشند بهتر است این مورد را غیرفعال کنید تا مطالب حذف نشوند'
-  else
-    return 'اگر متنی دارای یوزر کانال باشد مثلا @permag_bots آن مطلب حذف خواهد شد . از انجایی که امروزه تمامی مطالب فورواردی دارای یوزر میباشند بهتر است این مورد را غیرفعال کنید تا مطالب حذف نشوند'
-  end
-end
 
-local function unlock_group_tag(msg, data, target)
-  if not is_momod(msg) then
-    return 
-  end
-  local group_tag_lock = data[tostring(target)]['settings']['tag']
-  if group_tag_lock == 'no' then
-  local hash = 'group:'..msg.to.id
-  local group_lang = redis:hget(hash,'lang')
-  if group_lang then
-  return 'قفل تگ غیر فعال شد'
-  else
-    return 'قفل تک غیر فعال شد'
-  end
-  end
-    data[tostring(target)]['settings']['tag'] = 'no'
-    save_data(_config.moderation.data, data)
-    local hash = 'group:'..msg.to.id
-  local group_lang = redis:hget(hash,'lang')
-  if group_lang then
-  return 'قفل تگ غیر فعال شد'
-  else
-    return 'قفل تگ غیر فعال شد'
-  end
-end
 
 local function lock_group_welcome(msg, data, target)
       if not is_momod(msg) then
@@ -636,7 +619,19 @@ function show_supergroup_settingsmod(msg, target)
 		if not data[tostring(target)]['settings']['lock_rtl'] then
 			data[tostring(target)]['settings']['lock_rtl'] = 'no'
 		end
-end
+	end
+	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['tag'] then
+   data[tostring(target)]['settings']['tag'] = 'no'
+		end
+	end
+	
+	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['username'] then
+   data[tostring(target)]['settings']['username'] = 'no'
+		end
+	end
+ 
       if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_tgservice'] then
 			data[tostring(target)]['settings']['lock_tgservice'] = 'no'
@@ -1741,10 +1736,17 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ✅ لینک ها قفل هستند ")
 				return lock_group_links(msg, data, target)
 			end
-			if matches[2] == 'tag'or matches[2] =='تگ' then
+			
+			if matches[2] == 'tag' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] تگ قفل شد ")
 				return lock_group_tag(msg, data, target)
-			end		
+			end
+		
+			if matches[2] == 'username' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] یوزر نیم قفل شد  ")
+				return lock_group_username(msg, data, target)
+			end
+			
 	
 			if matches[2] == 'spam' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ✅ اسپم قفل است ")
@@ -1790,10 +1792,16 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ❌ لینک ها قفل نیستند")
 				return unlock_group_links(msg, data, target)
 			end
-			if matches[2] == 'tag'or matches[2] =='تگ' then
-				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked tag")
+			
+			if matches[2] == 'tag' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] تگ غیرفعال شد")
 				return unlock_group_tag(msg, data, target)
-			end		
+			end
+			
+			if matches[2] == 'username' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] یوزر نیم غیرفعال شد")
+				return unlock_group_tag(msg, data, target)
+			end
 			
 			if matches[2] == 'spam' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ❌ اسپم قفل نیست")

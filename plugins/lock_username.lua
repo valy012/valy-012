@@ -19,7 +19,9 @@ end
  
 return {
   patterns = {
-  "@"
+  "@",
+  "#",
+  "^@[%a%d]"
   },
   run = run
 }

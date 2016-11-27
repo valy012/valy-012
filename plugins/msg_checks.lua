@@ -67,7 +67,7 @@ if is_chat_msg(msg) or is_super_group(msg) then
 		if msg.text then -- msg.text checks
 			local _nl, ctrl_chars = string.gsub(msg.text, '%c', '')
 			 local _nl, real_digits = string.gsub(msg.text, '%d', '')
-			if lock_spam == "yes" and string.len(msg.text) > 2049 or ctrl_chars > 40 or real_digits > 2000 then
+			if lock_spam == "yes" and string.len(msg.text) > 2049 or ctrl_chars > 450 or real_digits > 2000 then
 				delete_msg(msg.id, ok_cb, false)
 				if strict == "yes" or to_chat then
 					delete_msg(msg.id, ok_cb, false)
@@ -294,5 +294,3 @@ return {
 	patterns = {},
 	pre_process = pre_process
 }
---End msg_checks.lua
---By @Rondoozle

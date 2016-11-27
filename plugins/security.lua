@@ -1,11 +1,4 @@
---Rewritable By Mohammadwh
---Opend By @Knight_team
---Begin security.lua
---Begin pre_process function
 local function pre_process(msg)
--- Begin 'RondoMsgChecks' text checks by @rondoozle and Edited by @janlou
--- Powered by @AdvanTm
--- CopyRight all right reserved
 if is_chat_msg(msg) or is_super_group(msg) then
 	if msg and not is_momod(msg) and not is_whitelisted(msg.from.id) then --if regular user
 	local data = load_data(_config.moderation.data)
@@ -72,7 +65,7 @@ if is_chat_msg(msg) or is_super_group(msg) then
 		if msg.text then -- msg.text checks
 			local _nl, ctrl_chars = string.gsub(msg.text, '%c', '')
 			 local _nl, real_digits = string.gsub(msg.text, '%d', '')
-			if lock_spam == "yes" and string.len(msg.text) > 2049 or ctrl_chars > 40 or real_digits > 2000 then
+			if lock_spam == "yes" and string.len(msg.text) > 2049 or ctrl_chars > 450 or real_digits > 2000 then
 				delete_msg(msg.id, ok_cb, false)
 				if strict == "yes" or to_chat then
 					delete_msg(msg.id, ok_cb, false)
@@ -80,13 +73,15 @@ if is_chat_msg(msg) or is_super_group(msg) then
 				end
 			end
 			local is_link_msg = msg.text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.text:match("@[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]") or msg.text:match("#[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]")
-			local is_bot = msg.text:match("?[Ss][Tt][Aa][Rr][Tt]=")
-			if is_link_msg and lock_link == "yes" and not is_bot then
-				delete_msg(msg.id, ok_cb, false)
-				if strict == "yes" or to_chat then
-					kick_user(msg.from.id, msg.to.id)
-				end
-		end
+      
+	or msg.text:match("?[Ss][Tt][Aa][Rr][Tt]=") 
+       
+      if is_link_msg and lock_link == "yes" and not is_bot then
+        delete_msg(msg.id, ok_cb, false)
+        if strict == "yes" or to_chat then
+          kick_user(msg.from.id, msg.to.id)
+        end
+    end
 		if msg.service then 
 			if lock_tgservice == "yes" then
 				delete_msg(msg.id, ok_cb, false)
@@ -182,14 +177,8 @@ if is_chat_msg(msg) or is_super_group(msg) then
 					end
 				end
 				
-				local is_username_caption = msg.media.type:match("@")
-				if is_username_caption and username == "yes" then
-					delete_msg(msg.id, ok_cb, false)
-					if strict == "yes" or to_chat then
-						kick_user(msg.from.id, msg.to.id)
-					end
-				end
-				
+
+        
 				local is_tag_caption = msg.media.caption:match("@")
 				if is_tag_caption == "yes" then
 					delete_msg(msg.id, ok_cb, false)
@@ -361,7 +350,3 @@ return {
 	pre_process = pre_process,
 	run = run
 }
---End security.lua
---By @Rondoozle
---Rewritable By Mohammadwh
---Opend By @Knight_team

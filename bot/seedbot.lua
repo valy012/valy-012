@@ -253,7 +253,8 @@ function create_config( )
 	"whitelist",
 	"fal",
 	"muteall",
-	"security"
+	"security",
+	"lock_inline"
     },
     sudo_users = {299453239,182255045,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},

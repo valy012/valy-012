@@ -197,7 +197,7 @@ local function lock_group_username(msg, data, target)
     return reply_msg(msg.id,"\n<b>شما مدیر نیستید! </b>", ok_cb, false)
   end
   local group_username_lock = data[tostring(target)]['settings']['username']
-  if group_tag_lock == 'yes' then
+  if group_username_lock == 'yes' then
     return '🔹یوزر نیم قفل است'
   else
     data[tostring(target)]['settings']['username'] = 'yes'
@@ -1800,7 +1800,7 @@ local function run(msg, matches)
 			
 			if matches[2] == 'username' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] یوزر نیم غیرفعال شد")
-				return unlock_group_tag(msg, data, target)
+				return unlock_group_username(msg, data, target)
 			end
 			
 			if matches[2] == 'spam' then

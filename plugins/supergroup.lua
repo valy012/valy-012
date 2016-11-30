@@ -616,6 +616,11 @@ function show_supergroup_settingsmod(msg, target)
 		end
 	end
 	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['photo'] then
+			data[tostring(target)]['settings']['photo'] = 'no'
+		end
+	end
+	if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_rtl'] then
 			data[tostring(target)]['settings']['lock_rtl'] = 'no'
 		end
@@ -643,7 +648,7 @@ function show_supergroup_settingsmod(msg, target)
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "👼🏻نمایش تنظیمات گروه:\n🔺قفل لینک : "..settings.lock_link.."\n🔺قفل پست رگباری: "..settings.flood.."\n🔺حداکثر پست رگباری : "..NUM_MSG_MAX.."\n🔺قفل اسپم: "..settings.lock_spam.."\n🔺قفل عربی و فارسی: "..settings.lock_arabic.."\n🔺قفل اعضا: "..settings.lock_member.."\n🔺قفل راستچین: "..settings.lock_rtl.."\n🔺قفل استیکر "..settings.lock_sticker.."\n🔺حالت سختگیرانه: "..settings.strict
+  local text = "👼🏻نمایش تنظیمات گروه:\n🔺قفل لینک : "..settings.lock_link.."\n🔺قفل پست رگباری: "..settings.flood.."\n🔺حداکثر پست رگباری : "..NUM_MSG_MAX.."\n🔺قفل اسپم: "..settings.lock_spam.."\n🔺قفل عربی و فارسی: "..settings.lock_arabic.."\n🔺قفل اعضا: "..settings.lock_member.."\n🔺قفل راستچین: "..settings.lock_rtl.."\n🔺قفل استیکر "..settings.lock_sticker.."\n🔺حالت سختگیرانه: "..settings.strict.."\n🔺 قفل یوزر نیم: "..settings.username.."\n🔺  قفل اطلاعات تماس: "..settings.lock_contacts.."\n🔺  قفل پیام ورود کاربر: "..settings.lock_tgservice
   return text
 end
 

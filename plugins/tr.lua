@@ -69,4 +69,4 @@ return {
 }
 
 end
---@permag_bots
+--@safroid_group

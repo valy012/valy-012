@@ -2074,7 +2074,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "🔺اگر مشکلی دارید به کانال @Permag_bots مراجعه کنید"
+			text = " پیام بدید @sudo_khofجهت خرید یا مشکل خود به ایدی "
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
@@ -2207,4 +2207,4 @@ return {
   pre_process = pre_process
 }
 --End supergrpup.lua
---By @permag_bots
+--By @safroid_group

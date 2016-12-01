@@ -16,7 +16,7 @@ local permagbot = [[
 🔻#who :ليست همه کابران گروه به همراه ايدي
 〰〰〰〰〰
 🔻#id : با زدن یوزر نیم شخص ایدی شخص را دریافت کنید
-mesal : #id @permag_bots
+mesal : #id @safroid_group
 〰〰〰〰〰
 🔻#promote : کاربر مورد نظر ناظر ربات میشود
 ▫️mesal : /promote @iduser

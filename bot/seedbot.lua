@@ -256,7 +256,7 @@ function create_config( )
 	"security",
 	"lock_inline"
     },
-    sudo_users = {199642007,tonumber(our_id)},--Sudo users
+    sudo_users = {199642007,282834747,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 	@sudo_khof

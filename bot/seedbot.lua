@@ -256,10 +256,11 @@ function create_config( )
 	"security",
 	"lock_inline"
     },
-    sudo_users = {299453239,182255045,199642007,tonumber(our_id)},--Sudo users
+    sudo_users = {199642007,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
-	@permag_bots
+	@sudo_khof
+		@safroid_group
 ]],
     help_text_realm = [[
 ]],
